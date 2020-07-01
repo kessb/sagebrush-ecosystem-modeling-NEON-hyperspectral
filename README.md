@@ -1,49 +1,38 @@
-# Sagebrush Ecosystem Modeling
+# Sagebrush Ecosystem Modeling with Hyperspectral Data
 
-This repository was developed in collaboration with Nature Serve to examine the efficacy of publicly availble remote sensing data to reconstruct sagebrush ecosystems. LIDAR Canopy Height Models, multispectral imagery, and hyperspectral imagery were tested for their ability to identify sagebrush. Users kessb and sarahmjaffe contributed to the automated workflow using 1x1m LIDAR CHMs. The final workflow comparing LANDSAT8 and NEON's hypspectral data sensitivty to sagebrush via endmember extraction and abundance mapping was developed in tandem with sarahmjaffe hosting and completing all LANDSAT analyses which are hosted at her <a href ="https://github.com/sarahmjaffe/sagebrush-ecosystem-modeling-with-landsat8"> Sagebrush Ecosystem Modeling with LANDSAT8 </a> repository. The hyperspectral analyses were performed and are hosted here by kessb.
+This repository tests the ability of hyperspectral data to visualize sagebrush presence and distribution. The completed workflow includes code for an endmember sensitivty analysis and unsupervised endmember extraction. While I could not validate these results against insitu data, the extracted endmembers are compared to isolated spectral signatures for greater sage brush, *Artemsia tridentata*, and cheatgrass, *Bromus tectorum* using Pearson's Correlation Coefficient. All endmembers are visualized with abundance maps, but particular focus is placed on endmembers correlating significantly to the isolated spectral signatures of the focal species. While this workflow focuses on identifiying sagebrush and cheatgrass in a known sagebrush environment at a National Ecological Obervatory Network (NEON) site in Utah (ONAQ), it is adaptable to any other NEON site and focal species/landcover types with known spectral signatures. 
+  
+This repository is part of a three-part project developed in collaboration with Nature Serve to examine the efficacy of publicly availble remote sensing data to reconstruct sagebrush ecosystems. The three components of this project test the following for their sensitivity to sagebrush ecosystems:
 
-The objective of these repositories is to develop workflows determining the presence and distribution of sagebrush and cheatgrass from remote sensing data. It is intended for the multispectral and hyperspectral results to be considered and ultimately validated against insitu data to compare accuracy so optimal spatial and spectral resolutions can be identified. Data is sourced from the National Ecological Observatory Network's (NEON) aerial records and the United States Geological Survey's (USGS) LANDSAT images.
+LIDAR Canopy Height Models, workflow developed by users @kessb and @sarahmjaffe and hosted <a href= "https://github.com/kessb/sagebrush-ecosystem-modelinghere" target="blank"> here</a> 
+LANDSAT 8 Multispectral, developed by @sarahmjaffe and hosted at her <a href ="https://github.com/sarahmjaffe/sagebrush-ecosystem-modeling-with-landsat8"> Sagebrush Ecosystem Modeling with LANDSAT8 </a> repository. 
+NEON's Hyperspectral, developed by @kessb and hosted here. 
+
+This workflow identified spectral signatures with 99% and 90% correlation to sagebrush and cheatgrass, respectively, using unsupervised endmember extraction. The resulting abundance maps indicate the abundance and distrbution of sagebrush and cheatgrass on site. While the results of this workflow can be interpreted alone, they are meant to be compared with @sarahmjaffe's LANDSAT workflow. The use of remote sensing data to model sagebrush ecosystems has not been extensively explored, and, along with visualizing the abundance/distribution of our focal species, we hoped to test the efficacy of different spatial/spectral resolutions. Consequently, these workflows in combination allow the comparison of the 1x1m, 426 bands of NEON data with the 30x30m, 7 bands of LANDSAT data.
+
+Additional code is in progress to 1) subset larger NEON hyperspectral datasets to insitu plot centroids with xarray - in a workflow inspired by Joe McGlinchy's <a href="https://github.com/earthlab/neon-headwall-data" > NEON-headwall-data </a> repository and 2) extract spectral signatures from single pixels. Both approaches offer potential ways to validate data though they are limited by the lack of *insitu* data documentating vegetation coordinates.
 
 # Relevance
 Sagebrush ecosystems cover much of the western United States and parts of southwestern Canada. Sagebrush ecosystems provide essential forage and habitat for approximately 350 other species of plants an animals, some of which, like the Greater Sage Grouse, are found only in sagebrush habitat. Sagebrush ecosystems are increasingly fragmented through anthropogenic land use and invasive species, with ranges expected to shift and shrink as warming temperatures force sagebrush populations north. While sagebrush still covers much of the western United States, only 10% of current habitats are considered unaffected by fragmentation. Consequently, many plants and animals associated with sagebrush are losing essential habitat and some qualify as endangered or threatened species per the Endangered Species Act. Conservation efforts targeted to sagebrush ecosystems are costly as they require the surveillance and upkeep of millions of acres of public and private land.
 
-This repository offers an alternative to traditional land monitoring strategies through its unique focus on and analyses of sagebrush ecosystems. We expect this code to be useful to other analysts because of its reproducible foundation, which will allow it to be applied to other research areas. While we are using it here to examine sagebrush habitat, the same processes can be run on other sites covered by the aforementioned agencies, allowing versatile analyses of vegetation structure and composition across the United States.
+This repository offers an alternative to traditional land monitoring strategies through its unique focus on and analyses of sagebrush ecosystems. 
 
 # Workflow Requirements
-## Tools and Packages
-See the scripts folder for functions written in Jupyter Notebook that are useful to different tasks.  This folder will be updated as the project progresses.  The current functions in this folder are designed to retrieve and analyze NEON *insitu* and canopy height model data.
-
-1) data_grabber.ipynb
-This file contains three functions: open_ecosystem_structure (canopy height model data), open_NEON_presence_cover_plant (percent of plant cover data) and open_woody_veg_structure (*insitu* vegetation data).  With a site name and date specified by the user, these functions will retrieve the data specific to your needs from the NEON website using an API call.
-
-2) function_scratchscripts.ipynb
-This file contains a scratch pad, exploring the NEON API process and identifying the urls required in the data_grabber.ipynb function.
-
-3) Site_Analysis.ipynb
-This file will contain the function necessary to create GeoDataFrames with buffered points derived from the *insitu* vegetation plots (40m diameter), using the site name and coordinate reference system specified by the user.
-
-4) Site_Overlap_Identification.ipynb
-This file will contain the function necessary to identify the canopy height model tiles that overlap with 100% overlap of buffered plot points.  Using a list of raster tiles specified by the user (typically determined by site name and date), this function will convert the tiles to polygons and derive their extents.  Then, it will use the intersection function to select only the tiles necessary for further analysis.
-
-See the presentations directory for descriptive output of our research and analyses.  Currently, there is only one blog (in both Jupyter Notebook and HTML format) that details our first steps in this project - comparing the measurements of vegetation found in the canopy height model data with the *insitu* vegetation plot data.
-
-See the environment.yml file for a current list of required packages. The environment can be forked and cloned to activate locally.
+## Required Packages
+All required packages are included in the repo's environment.yml. To activate the environment and install required packages, fork and clone the repository into the desired local directory and use conda activate nature-serve-env. 
 
 ## Data Sources and Formats
-The data currently required are entirely found on <a href="https://www.neonscience.org/">NEON's website</a> and are retrieved using NEON's API through the code represented in this repository.  The table below represents all data we retrieved to create our blog (found in the 'presentations' folder).
+This workflow uses data from NEON and USGS Spectral Library. The required data for this workflow are hosted on @kessb and @sarahmjaffe's figshares, and the workflows will download the required data programatically. However, users are welcome to peruse NEON's page for <a href= "https://data.neonscience.org/data-products/DP3.30006.001" target="blank"> Spectrometer Orthorectified Surface Directional Reflection - Mosaic </a> (Hyperspectral) data or search the Spectral Library's <a href="https://crustal.usgs.gov/speclab/AV14.php" target="blank" > Convolved to 2014 specifications of AVIRIS records to substitute in their own desired areas and landcover types. The table below represents all data we retrieved to create our blog (found in the 'presentations' folder).
 
-| PRODUCTS                                                               | DATA TYPE    | NEON PAGE             | PURPOSE                         |
+| PRODUCTS                                                               | File Format  | NEON PAGE             | PURPOSE                         |
 |------------------------------------------------------------------------|--------------|-----------------------|---------------------------------|
-| NEON Terrestrial Field Site Boundaries - Shapefile                     | polygons     | Spatial Data & Maps   | Site boundary polygon           |
-| NEON Terrestrial Observation System sampling locations - Shapefiles v7 | points       | Spatial Data & Maps   | Buffered plot boundary polygons |
-| Woody Plant Vegetation Structure                                       | GeoDataFrame | Explore Data Products | *Insitu* data                   |
-| Ecosystem Structure                                                    | raster tiles | Explore Data Products | CHM data                        |
+| NEON Spectrometer Orthorectified Surface Directional Reflection-Mosaic | .hdf5 files  | Data Portal (DP3.30006.001)   | Aerial Hyperspectral Tile for Endmember Extraction          |
+| USGS Spectral Library                                                  | .txt files   | Convolved to 2014 Specifications of AVIRIS  | Wavelength and Resolution (Reflectance) Values to Create Spectral Signatures for Endmember Validation |
 
-These functions we created were designed to run using a variety of sources, but we have yet to test these function outside of NEON products.  We will revisit this possibility later.
+## Functions
+The functions for these workflow have been adapted from NEON's tutorial for <a href= "https://www.neonscience.org/classification-endmember-python" target="blank"> Unsupervised Endmember Extraction</a> and are saved in the neon_helper_functions.py. They are imported with the library imports in the workflow and help open and clean the .hdf5 hyperspectral files.
 
-## Run Instructions
-The scripts folder is under development, but the blog post can be run to see our preliminary results comparing canopy height measurements and *insitu* measurements of vegetation.  The code is demonstrated using NEON's Central Plain Experimental Range (CPER), the Onaqui Mountains site (ONAQ) and the Great Smokey Mountain site (GRSM).  
+## Layout and Run Instructions
+This repo is divided into two directories: scripts and presentations. The presentation folder includes a copy of my abridged results in both .html and .ipynb format. The unabridged workflows for the endmember sensistivity analysis and NEON hyperspectral tile endmember extraction are in the scripts directory with a .py file containing required helper functions. An additional directory, test_scripts, is also located in the scripts folder and contains code currently under development. To run these workflows, the environment.yml must be forked, cloned, and activated. Once the requisite libraries are available, the scripts directory can be run to download, process, and analyze data. Once the data is downloaded, the contents of the presentation directory can be run - though these are best suited for viewing rather than analyses.
 
-To run the Jupyter Notebook version of the blog located in the presentations directory, activate the environment.yml.  You will then have all of the packages required to run the code from the first cell to the last.
-
-Alternatively, should you want to merely visualize our approach and results, you can also see our blog in HTML format, also found in the presentations directory.
+Additional code is in progress in the test_scripts folder to 1) subset larger NEON hyperspectral datasets to insitu plot centroids with xarray - in a workflow inspired by Joe McGlinchy's <a href="https://github.com/earthlab/neon-headwall-data" > NEON-headwall-data </a> repository and 2) extract spectral signatures from single pixels. Both approaches offer potential ways to validate data though they are limited by the lack of *insitu* data documentating vegetation coordinates. These scripts are currently not reproducible but will be when complete.
