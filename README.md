@@ -4,7 +4,7 @@ This repository tests the ability of hyperspectral data to detect species-level 
   
 This repository is part of a three-part project developed in collaboration with NatureServe, a wildlife conservation non-profit, to examine the efficacy of publicly availble remote sensing data to reconstruct sagebrush ecosystems. The three components of this project test the following for their sensitivity to sagebrush ecosystems:<br>
 
-* LIDAR Canopy Height Models at 1x1 meter resolution, workflow developed by users @kessb and @sarahmjaffe and hosted <a href= "https://github.com/kessb/sagebrush-ecosystem-modelinghere" target="blank"> here</a> <br>
+* LIDAR Canopy Height Models at 1x1 meter resolution, workflow developed by users @kessb and @sarahmjaffe and hosted <a href= "https://github.com/kessb/sagebrush-ecosystem-modelinghere" target="_blank"> here</a> <br>
 * LANDSAT 8 Multispectral at 30x30 meter/7 bands, developed by @sarahmjaffe and hosted at her <a href ="https://github.com/sarahmjaffe/sagebrush-ecosystem-modeling-with-landsat8"> Sagebrush Ecosystem Modeling with LANDSAT8 </a> repository.<br> 
 * NEON's Hyperspectral at 1x1 meter/426 bands, developed by @kessb and hosted here. <br>
 
@@ -24,11 +24,11 @@ This workflow uses data from NEON and USGS Spectral Library. The required data f
 
 | Data Products                                                               | File Format  |  Puprpose                                              |
 |-----------------------------------------------------------------------------|--------------|--------------------------------------------------------|
-| <a href= "https://data.neonscience.org/data-products/DP3.30006.001" target="blank">NEON Spectrometer Orthorectified Surface Directional Reflection - Mosaic </a> | .h5 files  | Aerial Hyperspectral Tile for Endmember Extraction          |
-| <a href="https://crustal.usgs.gov/speclab/AV14.php" target="blank" > USGS Spectral Library Convolved to 2014 specifications of AVIRIS </a> | .txt files | Wavelength and Reflectance Values to Create Spectral Signatures for Endmember Validation |
+| <a href= "https://data.neonscience.org/data-products/DP3.30006.001" target="_blank">NEON Spectrometer Orthorectified Surface Directional Reflection - Mosaic </a> | .h5 files  | Aerial Hyperspectral Tile for Endmember Extraction          |
+| <a href="https://crustal.usgs.gov/speclab/AV14.php" target="_blank" > USGS Spectral Library Convolved to 2014 specifications of AVIRIS </a> | .txt files | Wavelength and Reflectance Values to Create Spectral Signatures for Endmember Validation |
 
 ## Functions
-The functions for these workflow have been adapted from NEON's tutorial for <a href= "https://www.neonscience.org/classification-endmember-python" target="blank"> Unsupervised Endmember Extraction</a> and are saved in the neon_helper_functions.py. They are imported with the library imports in the workflow and help open and clean the .hdf5 hyperspectral files.
+The functions for these workflow have been adapted from NEON's tutorial for <a href= "https://www.neonscience.org/classification-endmember-python" target="_blank"> Unsupervised Endmember Extraction</a> and are saved in the neon_helper_functions.py. They are imported with the library imports in the workflow and help open and clean the .hdf5 hyperspectral files.
 
 ## Layout and Run Instructions
 This repo is divided into two directories: scripts and presentations. The presentation folder includes a copy of my abridged results (sage_advice_hyperspectral) in both .html and .ipynb. The .ipynb can be run through programmatic data downloads and the associated blog_helper_functions.py in the same directory. The scripts directory contains the unabridged workflows for the endmember sensistivity analysis (see endmember_sensitivity_analysis_ONAQ_tiles.ipynb) and the NEON hyperspectral tile endmember extraction (see sagebrush_hyperspectral_modeling_NEON_ONAQ.ipynb). Also in the scripts directory is file containing the required helper functions (see neon_helper_functions.py). An additional directory, test_scripts, is also located in the scripts folder and contains code currently under development. To run these workflows, the environment.yml must be forked, cloned, and activated. Once the requisite libraries are available, the scripts and presentations directories can be run to download, process, and analyze data. 
