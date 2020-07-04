@@ -22,10 +22,10 @@ All required packages are included in the repo's environment.yml. To activate th
 ## Data Sources and Formats
 This workflow uses data from NEON and USGS Spectral Library. The required data for this workflow are hosted on @kessb and @sarahmjaffe's figshares, and the workflows will download the required data programatically. However, users are welcome to peruse NEON's page for <a href= "https://data.neonscience.org/data-products/DP3.30006.001" target="blank"> Spectrometer Orthorectified Surface Directional Reflection - Mosaic </a> (Hyperspectral) data or search the Spectral Library's <a href="https://crustal.usgs.gov/speclab/AV14.php" target="blank" > Convolved to 2014 specifications of AVIRIS </a>records to substitute in their own desired areas and landcover types. The table below represents all data we retrieved to create our blog (found in the 'presentations' folder).
 
-| PRODUCTS                                                               | File Format  | NEON PAGE             | PURPOSE                         |
-|------------------------------------------------------------------------|--------------|-----------------------|---------------------------------|
-| NEON Spectrometer Orthorectified Surface Directional Reflection-Mosaic | .h5 files  | Data Portal (DP3.30006.001)   | Aerial Hyperspectral Tile for Endmember Extraction          |
-| USGS Spectral Library                                                  | .txt files   | Convolved to 2014 Specifications of AVIRIS  | Wavelength and Resolution (Reflectance) Values to Create Spectral Signatures for Endmember Validation |
+| Data PRODUCTS                                                               | File Format  |  PURPOSE                                             |
+|-----------------------------------------------------------------------------|------------|--------------------------------------------------------|
+| NEON Spectrometer Orthorectified Surface Directional Reflection-Mosaic      | .h5 files  | Aerial Hyperspectral Tile for Endmember Extraction          |
+| USGS Spectral Library Convolved to 2014 Specifications of AVIRIS            | .txt files | Wavelength and Resolution (Reflectance) Values to Create Spectral Signatures for Endmember Validation |
 
 ## Functions
 The functions for these workflow have been adapted from NEON's tutorial for <a href= "https://www.neonscience.org/classification-endmember-python" target="blank"> Unsupervised Endmember Extraction</a> and are saved in the neon_helper_functions.py. They are imported with the library imports in the workflow and help open and clean the .hdf5 hyperspectral files.
