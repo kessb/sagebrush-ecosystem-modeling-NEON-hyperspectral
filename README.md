@@ -24,7 +24,7 @@ This workflow uses data from NEON and USGS Spectral Library. The required data f
 
 | PRODUCTS                                                               | File Format  | NEON PAGE             | PURPOSE                         |
 |------------------------------------------------------------------------|--------------|-----------------------|---------------------------------|
-| NEON Spectrometer Orthorectified Surface Directional Reflection-Mosaic | .hdf5 files  | Data Portal (DP3.30006.001)   | Aerial Hyperspectral Tile for Endmember Extraction          |
+| NEON Spectrometer Orthorectified Surface Directional Reflection-Mosaic | .h5 files  | Data Portal (DP3.30006.001)   | Aerial Hyperspectral Tile for Endmember Extraction          |
 | USGS Spectral Library                                                  | .txt files   | Convolved to 2014 Specifications of AVIRIS  | Wavelength and Resolution (Reflectance) Values to Create Spectral Signatures for Endmember Validation |
 
 ## Functions
