@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
+.nbgrader.log
 # OS
 .DS_Store
 # This is created by the code - ignoring it
